@@ -925,3 +925,7 @@ Exception in thread "pool-373-thread-1" java.lang.InterruptedException
 2025.05.09 02:23:04 INFO  no build target found for E:\Academics\PhD\4.Chisel\chisel-tutorial\src\main\scala\problems\Accumulator.scala. Using presentation compiler with project's scala-library version: 3.3.5
 2025.05.09 02:23:14 WARN  no build target for: E:\Academics\PhD\4.Chisel\chisel-tutorial\src\main\scala\problems\Accumulator.scala
 2025.05.09 02:23:14 INFO  no build target found for E:\Academics\PhD\4.Chisel\chisel-tutorial\src\main\scala\problems\Accumulator.scala. Using presentation compiler with project's scala-library version: 3.3.5
+2025.05.09 13:04:59 INFO  Started: Metals version 1.5.2 in folders 'D:\Academics\PhD\4.Chisel\chisel-tutorial' for client Visual Studio Code 1.98.2.
+2025.05.09 13:08:18 INFO  Shutting down server
+2025.05.09 13:08:18 INFO  shutting down Metals
+2025.05.09 13:08:18 INFO  Exiting server

@@ -1,0 +1,26 @@
+[
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~DynamicMemorySearch|DynamicMemorySearch>io_done",
+    "sources":[
+      "~DynamicMemorySearch|DynamicMemorySearch>io_en",
+      "~DynamicMemorySearch|DynamicMemorySearch>io_data"
+    ]
+  },
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.options.TargetDirAnnotation",
+    "directory":"."
+  },
+  {
+    "class":"firrtl.options.OutputAnnotationFileAnnotation",
+    "file":"DynamicMemorySearch"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"."
+  }
+]
