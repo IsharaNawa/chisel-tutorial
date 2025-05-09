@@ -2,6 +2,7 @@
 package problems
 
 import chisel3._
+import chisel3.util.Cat
 
 // Problem:
 //
@@ -15,9 +16,16 @@ class LFSR16 extends Module {
     val out = Output(UInt(16.W))
   })
 
-  // Implement below ----------
 
-  io.out := 0.U
+  // create a register
+  val reg = RegInit(1.U(16.W))
 
-  // Implement above ----------
+  // if the inc is enabled, then get the next value
+  when(io.inc){
+    val nxt_res = Cat(reg(0)^reg(2)^reg(3)^reg(5), reg(15,1)) 
+    reg := nxt_res
+  }
+
+  // then connect the new register to the output
+  io.out := reg
 }
