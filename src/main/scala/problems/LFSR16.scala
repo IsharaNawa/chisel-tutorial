@@ -11,6 +11,12 @@ import chisel3.util.Cat
 // State change is allowed only when 'inc' is asserted
 //
 class LFSR16 extends Module {
+
+  // A Fibonacci LFSR feeds the XOR of specific tapped bits into the MSB.
+  // For this polynomial, the feedback taps are on bits 15, 13, 12, and 10 (zero-indexed from LSB).
+  // You shift the register right, and the feedback enters the MSB.
+  // Do not update the register unless inc is high.
+
   val io = IO(new Bundle {
     val inc = Input(Bool())
     val out = Output(UInt(16.W))
