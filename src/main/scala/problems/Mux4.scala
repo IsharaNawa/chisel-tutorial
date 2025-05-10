@@ -35,14 +35,22 @@ class Mux4 extends Module {
 
   val m0 = Module(new Mux2())
   m0.io.sel := io.sel(0)
-  m0.io.in0 := io.in0
+  m0.io.in0 := io.in0 
   m0.io.in1 := io.in1
 
   //Implement below ----------
 
+  val m1 = Module(new Mux2())
+  m1.io.sel := io.sel(0)
+  m1.io.in0 := io.in2
+  m1.io.in1 := io.in3 
 
-
+  val output = Module(new Mux2())
+  output.io.in0 := m0.io.out
+  output.io.in1 := m1.io.out
+  output.io.sel := io.sel(1)
+  
   // make the compile process happy, needs to be substituted by the output of the Mux
-  io.out := 1.U
+  io.out := output.io.out
   //Implement above ----------
 }
