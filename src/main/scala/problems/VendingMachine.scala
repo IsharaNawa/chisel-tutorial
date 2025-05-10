@@ -13,19 +13,60 @@ import chisel3.util._
 // The vending machine should return to the 'sIdle' state from the 'sOk' state.
 //
 class VendingMachine extends Module {
+
+  // inputs are nickel and dime
+
+  // valid when sOk is the state
   val io = IO(new Bundle {
     val nickel = Input(Bool())
     val dime   = Input(Bool())
     val valid  = Output(Bool())
   })
+
+  // states
   val sIdle :: s5 :: s10 :: s15 :: sOk :: Nil = Enum(5)
+
+  // since we know the states and inputs, we can create the state machine
+
+  // create a register to store the state
+  // set the initial state as idle
   val state = RegInit(sIdle)
 
   // Implement below ----------
 
-  state := s5
+  // if the current state is sOk , make it sIdle without having any inputs
+  
+
+  // state machine
+  when(state===sIdle){
+    when(io.nickel){
+      state := s5
+    }.elsewhen(io.dime){
+      state := s10
+    }
+  }.elsewhen(state===s5){
+    when(io.nickel){
+      state := s10
+    }.elsewhen(io.dime){
+      state := s15
+    }
+  }.elsewhen(state===s10){
+    when(io.nickel){
+      state := s15
+    }.elsewhen(io.dime){
+      state := sOk
+    }
+  }.elsewhen(state===s15){
+    when(io.nickel || io.dime){
+      state := sOk
+    }
+  }.elsewhen(state===sOk){
+    state := sIdle
+  }
 
   // Implement above ----------
 
+  // if the state is sOk, set the valid bit to 1
   io.valid := (state === sOk)
+
 }
