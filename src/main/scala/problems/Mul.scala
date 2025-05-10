@@ -17,8 +17,18 @@ class Mul extends Module {
   val mulsValues = new ArrayBuffer[UInt]()
 
   // Calculate io.z = io.x * io.y by generating a table of values for mulsValues
+  for(i <- 0 until 16){
+    for(j <- 0 until 16){
+      mulsValues += (i * j).asUInt(8.W)
+    }
+  }
 
-  // Implement below ----------
+  // convert that to a LUT
+  val table = VecInit(mulsValues)
 
-  // Implement above ----------
+  // get the index related to the current values
+  val index = (io.x << 4.U) | io.y
+
+  // connect the outut as the table indexed with the correct index value
+  io.z := table(index)
 }

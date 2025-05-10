@@ -20,9 +20,28 @@ class Memo extends Module {
     val rdData  = Output(UInt(8.W))
   })
 
+  // memory to be written or read from
   val mem = Mem(256, UInt(8.W))
 
   // Implement below ----------
+
+  // check if wen is enabled
+  when(io.wen){
+
+    // if so, connect the data to the address given by the wrAddress of the memory
+    mem(io.wrAddr) := io.wrData
+  }
+
+  // check is reading is enabled
+  when(io.ren){
+
+    // if so, connect the reading data to the output
+    io.rdData := mem(io.rdAddr)
+  }.otherwise{
+
+    // otherwise connect 0
+    io.rdData := 0.U
+  }
 
   // Implement above ----------
 
